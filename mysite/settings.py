@@ -23,9 +23,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY', 'your-default-secret-key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DJANGO_DEBUG', 'False') == 'True'
+DEBUG = os.getenv('DJANGO_DEBUG', 'False').lower() in ['true', '1', 't']
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1,0.0.0.0').split(',')
+ALLOWED_HOSTS = ['51.250.101.241', 'localhost', '127.0.0.1']
+
+print(f"DEBUG is set to: {DEBUG}")
+print(f"ALLOWED_HOSTS is set to: {ALLOWED_HOSTS}")
 
 INTERNAL_IPS = [
     "127.0.0.1",
@@ -166,4 +169,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = reverse_lazy("myauth:about-me")
 LOGIN_URL = reverse_lazy("myauth:login")
+
+
 

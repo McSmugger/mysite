@@ -15,10 +15,13 @@ from .views import (
     ProductViewSet,
 )
 
+from .views_debug import show_allowed_hosts
+
 app_name = "shopapp"
 
 routers = DefaultRouter()
 routers.register("products", ProductViewSet)
+
 
 urlpatterns = [
     # path("", cache_page(60 * 3)(ShopIndexView.as_view()), name="index"),
@@ -32,4 +35,6 @@ urlpatterns = [
     path("products/<int:pk>/archive/", ProductDeleteView.as_view(), name="product_delete"),
     path("orders/", OrdersListView.as_view(), name="orders_list"),
     path("orders/<int:pk>/", OrderDetailView.as_view(), name="order_details"),
+    path("debug/allowed-hosts/", show_allowed_hosts, name="show_allowed_hosts"),
 ]
+
